@@ -1,4 +1,9 @@
 {%extends "base.html"%}
 {%block content%}
-<p>Heyyyyy {{usr}}</p>
+<h1>Currently logged in as {{session['username'].capitalize()}}</h>
+    <form action="{{url_for('delete_username',uname=session['username'])}}" method="POST">
+<div class="d-grid d-md-block">
+    <button type="submit" class="btn btn-outline-danger">Logout</button>
+</div>
+</form>
 {%endblock%}

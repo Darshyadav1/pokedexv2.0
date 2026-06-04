@@ -1,5 +1,6 @@
 from flask import Flask,render_template,request,redirect,url_for,flash,session
 import requests
+import backend as re
 app=Flask(__name__)
 app.secret_key = "fhgztghgdh"
 @app.route("/",methods=["POST","GET"])
@@ -23,7 +24,7 @@ def info(pname):
         return render_template("info.html",pname=pname,height=hight)
     elif(data.status_code==404):
     
-        flash("Pokemon not found in database","warning")
+        flash(f"Pokemon not found in database perhapes you meant {re.ai_module(pname)}?","warning")
         return redirect(url_for("home"))
     else:
         flash("poki api down","warning")
@@ -43,6 +44,12 @@ def login():
 @app.route("/profile/<profile>")
 def pro(profile):
     return render_template("user.html",usr=profile)
+
+@app.route("/delete/<uname>",methods=["POST"])
+def delete_username(uname):
+    session.pop('username',None)
+    flash(f"{uname} have been logged out ")
+    return redirect(url_for("home"))
 
 
 

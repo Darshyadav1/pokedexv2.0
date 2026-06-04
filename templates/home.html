@@ -1,6 +1,10 @@
 {%extends "base.html"%}
 {% block content %}
-<h1>Welcome</h1>
+{%if 'username' in session%}
+ <h1>Welcome {{session['username'].capitalize()}} to the world of pokemon</h1>
+{%else%}
+ <h1>Welcome trainer to the world of pokemon</h1>
+{%endif%}
 <div class="rounded-4 overflow-hidden w-100">
     <video src="{{ url_for('static', filename='vid.mp4') }}" class="w-100 object-fit-cover" style="height: 400px;" autoplay muted playsinline loop controls></video>
 </div>
@@ -12,6 +16,18 @@
     <input type="text" class="form-control" id="pokemon" name="pokemon" aria-describedby="emailHelp">
     
   </div>
+       {% with msg = get_flashed_messages(with_categories=true) %}
+          {% if msg %}
+            <div class="flash-messages mt-3">
+              {% for category, message in msg %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
   
   
   <button type="submit" class="btn btn-primary" value="submit">Submit</button>

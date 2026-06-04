@@ -32,6 +32,7 @@
                   <a href="{{ url_for('login') }}" class="nav-link">Login / View Profile</a>
                 {% endif %}
               </li> 
+              
             </ul>
           </div>
         </div>
@@ -39,18 +40,7 @@
     </nav>
 
     <main class="container pt-5 mt-4">
-        {% with msg = get_flashed_messages(with_categories=true) %}
-          {% if msg %}
-            <div class="flash-messages mt-3">
-              {% for category, message in msg %}
-                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                  {{ message }}
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-              {% endfor %}
-            </div>
-          {% endif %}
-        {% endwith %}
+        
         {% block content %}
         {% endblock %}
     </main>
