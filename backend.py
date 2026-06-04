@@ -1,7 +1,7 @@
 from google import genai
 from google.genai import types
 
-# Using your test key directly
+
 client = genai.Client(api_key="AIzaSyBM0TUfn-9_87RuIFqhTVaw-ElRYb8tf-M")
 
 def ai_module(pname):
@@ -15,11 +15,11 @@ def ai_module(pname):
             )
         )
         
-        # Checking if the text property returned an actual string cleanly
+        
         if response.text:
             return response.text.strip()
             
-        # If it's a structural None, extract it safely from the first response choice
+        
         if response.candidates and response.candidates[0].content.parts:
             raw_text = response.candidates[0].content.parts[0].text
             if raw_text:

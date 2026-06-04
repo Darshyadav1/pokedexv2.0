@@ -36,7 +36,7 @@ def info(pname):
 def login():
     if request.method == "POST":
         username = request.form['username']
-        session['username'] = username  # <-- Saves the user to the session!
+        session['username'] = username  
         return redirect(url_for("pro", profile=username))
     else:
         return render_template("login.html")
@@ -57,9 +57,7 @@ def delete_username(uname):
 
     
 
-""" @app.route("/<usr>")
-def profile(usr):
-    return render_template("user.html",usr=usr) """
+
 
 
 

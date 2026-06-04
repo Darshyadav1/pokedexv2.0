@@ -3,10 +3,19 @@
 <div class="row justify-content-center mt-5">
     <div class="col-md-4">
         <form action="{{ url_for('login') }}" method="POST">
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" name="username" id="username" class="form-control" required>
-            </div>
+            </div> -->
+            
+    <div class="form-control">
+        <input type="text" required="text" class="form-control" id="username" name="username">
+        <label>
+            <!-- <span>E</span><span>n</span><span>t</span><span>e</span><span>r</span><span> </span><span>N</span><span>a</span><span>m</span><span>e</span> -->
+              <span style="transition-delay:0ms">U</span><span style="transition-delay:50ms">s</span><span style="transition-delay:100ms">e</span><span style="transition-delay:150ms">r</span><span style="transition-delay:200ms">n</span><span style="transition-delay:250ms">a</span><span style="transition-delay:300ms">m</span><span style="transition-delay:350ms">e</span>
+        </label>
+    </div>
+
             <button type="submit" class="btn btn-primary w-100">Login</button>
         </form>
     </div>
