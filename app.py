@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,redirect,url_for,flash
+from flask import Flask,render_template,request,redirect,url_for,flash,session
 import requests
 app=Flask(__name__)
 app.secret_key = "fhgztghgdh"
@@ -28,6 +28,33 @@ def info(pname):
     else:
         flash("poki api down","warning")
         return redirect(url_for("home"))
+    
+
+
+@app.route("/login", methods=["POST", "GET"])
+def login():
+    if request.method == "POST":
+        username = request.form['username']
+        session['username'] = username  # <-- Saves the user to the session!
+        return redirect(url_for("pro", profile=username))
+    else:
+        return render_template("login.html")
+    
+@app.route("/profile/<profile>")
+def pro(profile):
+    return render_template("user.html",usr=profile)
+
+
+
+
+
+    
+
+""" @app.route("/<usr>")
+def profile(usr):
+    return render_template("user.html",usr=usr) """
+
+
 
 if __name__=="__main__":
     app.run(debug=True)
