@@ -1,0 +1,27 @@
+{%extends "base.html"%}
+{% block content %}
+<h1>Welcome</h1>
+<div class="rounded-4 overflow-hidden w-100">
+    <video src="{{ url_for('static', filename='vid.mp4') }}" class="w-100 object-fit-cover" style="height: 400px;" autoplay muted playsinline loop controls></video>
+</div>
+{%with msg=get_flashed_messages(with_categories=true)%}
+{%if msg%}
+{% for category, message in msg %}
+      <div class="alert alert-{{ category }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+{%endif%}
+{%endwith%}
+
+<form action="#" method="post">
+  <div class="mb-3">
+    <label for="pokemon" class="form-label">Enter pokemon</label>
+    <input type="text" class="form-control" id="pokemon" name="pokemon" aria-describedby="emailHelp">
+    
+  </div>
+  
+  
+  <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+</form>
+{% endblock %}
