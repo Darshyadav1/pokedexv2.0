@@ -1,0 +1,118 @@
+/* --- Core Favorite Button Container --- */
+.fav-btn {
+    margin-top: 25px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 28px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px; /* Perfectly pill-shaped */
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Internal Text Tracking Layer --- */
+.fav-btn .fav-text {
+  position: relative;
+  z-index: 3;
+  transition: transform 0.3s ease;
+}
+
+/* --- The Sliding Ambient Glow Canvas --- */
+.fav-btn .fav-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  opacity: 0;
+  z-index: 1;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.4s ease;
+}
+
+/* --- SVG Icon Box Container --- */
+.fav-btn .fav-icon-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
+.fav-btn .heart-svg {
+  width: 100%;
+  height: 100%;
+  color: #ff416c; /* Vibrant pink/red outline */
+  fill: transparent;
+  transition: all 0.4s ease;
+}
+
+/* ===================================================
+   🚀 THE HOVER PHYSICS
+   =================================================== */
+
+/* 1. Expand the colored gradient background canvas across from left to right */
+.fav-btn:hover .fav-glow {
+  opacity: 1;
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* 2. When hovered, make the structural text and borders snap cleanly */
+.fav-btn:hover {
+  border-color: transparent;
+  box-shadow: 0 0 25px rgba(255, 65, 108, 0.5);
+  color: #ffffff;
+}
+
+/* 3. Force the heart icon to light up solid white against the red background */
+.fav-btn:hover .heart-svg {
+  color: #ffffff;
+  fill: #ffffff;
+  /* Triggers the custom heartbeat keyframe script looping continuously */
+  animation: heartBeatThump 0.8s infinite alternate cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+/* 4. Playful visual subtle shift - text moves slightly right, icon scales up */
+.fav-btn:hover .fav-text {
+  transform: translateX(2px);
+}
+.fav-btn:hover .fav-icon-box {
+  transform: scale(1.1);
+}
+
+/* ===================================================
+   💓 THE DUAL-STAGE HEARTBEAT KEYFRAMES
+   =================================================== */
+@keyframes heartBeatThump {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.3) rotate(-3deg);
+  }
+  40% {
+    transform: scale(1.1) rotate(3deg);
+  }
+  60% {
+    transform: scale(1.35) rotate(0deg);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}

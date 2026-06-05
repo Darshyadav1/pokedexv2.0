@@ -1,10 +1,42 @@
 {%extends "base.html"%}
 {%block content%}
+
+<link rel="stylesheet" href="{{url_for('static',filename='info.css')}}">
 <h1>Name: {{pname.capitalize()}}</h1>
+<img src="{{img}}" class="img-fluid" alt="...">
 <h1>{{pname.capitalize()}} id: {{id}}</h1>
 
 <h1>Height: {{height}}</h1>
 <h1>Weight: {{weight}}</h1>
+<div>
 <a class="btn btn-primary" href="/">Back to search</a>
+</div>
+<!-- From Uiverse.io by AKAspidey01 --> 
+<form action="{{url_for('fav_pokemon',pname=pname)}}" method="POST">
+<button class="fav-btn" type="submit">
+    <div class="fav-glow"></div>
+    
+    <div class="fav-icon-box">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="heart-svg">
+            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+        </svg>
+    </div>
+    
+    <span class="fav-text">Add to Favorites</span>
+</button>
+</form>
+{% with msg = get_flashed_messages(with_categories=true) %}
+      {% if msg %}
+        <div class="flash-messages mt-3 mb-3">
+          {% for category, message in msg %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+              {{ message | safe }} <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+
 
 {%endblock%}
