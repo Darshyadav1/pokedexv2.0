@@ -2,7 +2,7 @@ from google import genai
 from google.genai import types
 
 
-client = genai.Client()
+client = genai.Client(api_key="AIzaSyBM0TUfn-9_87RuIFqhTVaw-ElRYb8tf-M")
 
 def ai_module(pname):
     try:

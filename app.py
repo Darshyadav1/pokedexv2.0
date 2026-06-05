@@ -18,10 +18,12 @@ def info(pname):
     data=requests.get(url)
     if(data.status_code==200):
         response=data.json()
+        idd=response.get('id')
 
         hight=response.get('height')
+        weight=response.get('weight')
 
-        return render_template("info.html",pname=pname,height=hight)
+        return render_template("info.html",pname=pname,height=hight,weight=weight,id=idd)
     elif(data.status_code==404):
     
         flash(f"Pokemon not found in database perhapes you meant {re.ai_module(pname)}?","warning")
@@ -37,7 +39,7 @@ def login():
     if request.method == "POST":
         username = request.form['username']
         session['username'] = username  
-        return redirect(url_for("pro", profile=username))
+        return redirect(url_for("home"))
     else:
         return render_template("login.html")
     
