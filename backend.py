@@ -1,6 +1,6 @@
 from google import genai
 from google.genai import types
-
+import requests
 
 client = genai.Client(api_key="AIzaSyBM0TUfn-9_87RuIFqhTVaw-ElRYb8tf-M")
 
@@ -30,4 +30,31 @@ def ai_module(pname):
     except Exception as e:
         return f"Error: {str(e)}"
     
-print(ai_module("charmonderrr"))
+
+
+def main(pname):
+    url=f"https://pokeapi.co/api/v2/pokemon/{pname}"
+    
+    data=requests.get(url)
+    if(data.status_code==200):
+        signal="green"
+        response=data.json()
+        idd=response.get('id')
+
+        hight=response.get('height')
+        weight=response.get('weight')/10
+        return signal,idd,weight,hight
+
+
+    elif(data.status_code==404):
+        signal="red"
+        idd=None
+        weight=None
+        hight=None
+        return signal,idd,weight,hight
+    else:
+        signal="black"
+        idd=None
+        weight=None
+        hight=None
+        return signal,idd,weight,hight

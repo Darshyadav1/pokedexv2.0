@@ -13,24 +13,18 @@ def home():
 
 @app.route("/pokemon/<pname>")
 def info(pname):
-    url=f"https://pokeapi.co/api/v2/pokemon/{pname}"
     
-    data=requests.get(url)
-    if(data.status_code==200):
-        response=data.json()
-        idd=response.get('id')
-
-        hight=response.get('height')
-        weight=response.get('weight')
-
-        return render_template("info.html",pname=pname,height=hight,weight=weight,id=idd)
-    elif(data.status_code==404):
-    
+    signal, idd, weight, height = re.main(pname)
+    if(signal=="green"):
+        return render_template("info.html",pname=pname,height=height,weight=weight,id=idd)
+    elif(signal=="red"):
         flash(f"Pokemon not found in database perhapes you meant {re.ai_module(pname)}?","warning")
         return redirect(url_for("home"))
     else:
         flash("poki api down","warning")
         return redirect(url_for("home"))
+
+
     
 
 
