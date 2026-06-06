@@ -116,3 +116,98 @@
     transform: scale(1.2);
   }
 }
+
+
+
+
+
+
+
+
+
+/* From Uiverse.io by vinodjangid07 */ 
+/* From Uiverse.io by vinodjangid07 | Modified for "Remove from Fav" & Mobile Support */ 
+.button {
+  margin-top: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: .3s;
+  overflow: hidden;
+  position: relative;
+  font-family: sans-serif;
+}
+
+.svgIcon {
+  width: 12px;
+  transition-duration: .3s;
+}
+
+.svgIcon path {
+  fill: white;
+}
+
+/* --- DESKTOP HOVER STYLES (Screen widths larger than mobile) --- */
+@media (min-width: 769px) {
+  .button::before {
+    
+    position: absolute;
+    top: -20px;
+    content: "Remove from Fav";
+    white-space: nowrap;
+    color: white;
+    transition-duration: .3s;
+    font-size: 13px;
+    opacity: 0;
+  }
+
+  .button:hover {
+    width: 170px;
+    border-radius: 50px;
+    background-color: rgb(255, 69, 69);
+  }
+
+  .button:hover .svgIcon {
+    transform: translateY(100%);
+  }
+
+  .button:hover::before {
+    opacity: 1;
+    transform: translateY(35px);
+  }
+}
+
+/* --- MOBILE ONLY STYLES (Screens 768px wide or smaller) --- */
+@media (max-width: 768px) {
+  .button {
+    width: auto;                  /* Allow button to wrap the text and icon size */
+    height: auto;
+    padding: 10px 16px;           /* Comfortable tapping area */
+    border-radius: 30px;          /* Clean pill shape */
+    background-color: rgb(255, 69, 69); /* Always red on mobile to signify delete */
+    gap: 8px;                     /* Puts clean spacing between icon and text */
+  }
+
+  /* Keep the icon perfectly visible next to the text instead of pushing it down */
+  .svgIcon {
+    width: 14px;
+    transform: none !important;
+  }
+
+  /* Render the text right in front of the user instead of hiding it */
+  .button::before {
+    content: "Remove from Fav";
+    color: white;
+    font-size: 13px;
+    white-space: nowrap;
+    order: 2;                     /* Pushes text to display *after* the icon */
+  }
+}

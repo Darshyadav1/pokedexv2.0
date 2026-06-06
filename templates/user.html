@@ -6,8 +6,9 @@
     {%if 'fav_pokemon' in session%}
     <h1>{{session['username'].capitalize()}}'s fav pokemons-</h1>
      {%for i in session['fav_pokemon']%}
-
-     <h2> • {{i}}</h2>
+        <div>
+      <a class="btn btn-link" href="/pokemon/{{i}}">{{i}}</a>
+      </div>
         
 
 
