@@ -2,6 +2,8 @@ from flask import Flask,render_template,request,redirect,url_for,flash,session
 import requests
 import backend as re
 from datetime import timedelta
+from thefuzz import fuzz,process
+from pokidata import pok
 app=Flask(__name__)
 app.secret_key = "fhgztghgdh"
 
@@ -26,7 +28,9 @@ def info(pname):
         if(signal=="green"):
             return render_template("info.html",pname=pname,height=height,weight=weight,id=idd,img=img)
         elif(signal=="red"):
-            flash(f"Pokemon not found in database perhapes you meant {re.ai_module(pname)}?","warning")
+            idkname,wtf= process.extractOne(pname, pok)
+            
+            flash(f"Pokemon not found in database perhapes you meant {idkname}?","warning")
             return redirect(url_for("home"))
         else:
             flash("poki api down","warning")
