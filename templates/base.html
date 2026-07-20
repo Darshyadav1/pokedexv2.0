@@ -28,13 +28,7 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
-              <li class="nav-item">
-                {% if session.get('username') %}
-                  <a href="{{ url_for('pro', profile=session['username']) }}" class="nav-link">Profile ({{ session['username'] }})</a>
-                {% else %}
-                  <a href="{{ url_for('home') }}" class="nav-link">Login / View Profile</a>
-                {% endif %}
-              </li> 
+              
               
             </ul>
           </div>
@@ -47,6 +41,40 @@
         {% block content %}
         {% endblock %}
     </main>
+
+        <footer class="bg-body-tertiary border-top border-secondary-subtle py-4 mt-auto">
+      <div class="container">
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3">
+          
+          <div class="text-center text-sm-start">
+            <p class="mb-1 fw-bold text-body small">
+                Pokedex
+            </p>
+            <p class="mb-0 text-secondary x-small style-foot-note">
+              Designed, built, and maintained with ❤️ by <span class="text-primary fw-medium"> <a href="https://desiralabs.vercel.app/">  desiralabs</a></span>.
+            </p>
+          </div>
+          
+          <div class="d-flex gap-4 text-secondary small style-foot-links">
+            <span class="x-small"><i class="bi bi-shield-check me-1 text-success"></i> {% block leftf %}
+                
+            {% endblock leftf %}</span>
+            <span class="x-small"><i class="bi bi-cpu-fill me-1 text-info"></i> Version 1.7</span>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
+    <style>
+      
+      .x-small {
+        font-size: 0.8rem;
+      }
+      .style-foot-note {
+        letter-spacing: -0.01em;
+      }
+    </style>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
