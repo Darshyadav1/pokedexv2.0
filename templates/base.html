@@ -32,7 +32,7 @@
                 {% if session.get('username') %}
                   <a href="{{ url_for('pro', profile=session['username']) }}" class="nav-link">Profile ({{ session['username'] }})</a>
                 {% else %}
-                  <a href="{{ url_for('login') }}" class="nav-link">Login / View Profile</a>
+                  <a href="{{ url_for('home') }}" class="nav-link">Login / View Profile</a>
                 {% endif %}
               </li> 
               
