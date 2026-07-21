@@ -58,4 +58,4 @@ def delete_fav(pname):
     return redirect(url_for("info", pname=pname))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
